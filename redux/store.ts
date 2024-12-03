@@ -1,8 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/user";
+import courseReducer from "./slices/course";
+import veblogReducer from "./slices/veblog";
 
 const store = configureStore({
-  reducer: { users: userReducer },
+  reducer: {
+    users: userReducer,
+    courses: courseReducer,
+    veblogs: veblogReducer,
+  },
 });
 
 store.subscribe(() => {

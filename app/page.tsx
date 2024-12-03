@@ -75,11 +75,14 @@ export default function Home() {
           ))}
         {loading &&
           Array.from({ length: 8 }).map((e, i) => (
-            <div className="w-full p-2 border rounded-lg flex gap-3 animate-pulse">
-              <div className="w-[60px] rounded-md aspect-square bg-zinc-200 animate-pulse"></div>
+            <div
+              key={i}
+              className="w-full p-2 border border-zinc-100 dark:border-zinc-800 rounded-lg flex gap-3 animate-pulse"
+            >
+              <div className="w-[60px] rounded-md aspect-square bg-zinc-200 dark:bg-zinc-800 animate-pulse"></div>
               <div className="flex flex-col gap-2">
-                <div className="h-[25px] sm:w-[150px] w-[120px] rounded-md bg-zinc-200 animate-pulse"></div>
-                <div className="h-[25px] sm:w-[250px] w-[200px] rounded-md bg-zinc-200 animate-pulse"></div>
+                <div className="h-[25px] sm:w-[150px] w-[120px] rounded-md bg-zinc-200 dark:bg-zinc-800 animate-pulse"></div>
+                <div className="h-[25px] sm:w-[250px] w-[200px] rounded-md bg-zinc-200 dark:bg-zinc-800 animate-pulse"></div>
               </div>
             </div>
           ))}

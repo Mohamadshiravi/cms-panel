@@ -2,13 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 type userStateType = {
+  _id: string;
   age: number;
   city: string;
   email: string;
   firstname: string;
   lastname: string;
   username: string;
-  _id: string;
 };
 
 const usersState: userStateType[] = [];
