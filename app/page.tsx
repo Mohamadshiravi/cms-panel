@@ -1,13 +1,16 @@
 "use client";
 
-import { getUsersFromServer } from "@/redux/slices/user";
+import LoadingSvg from "@/components/module/loading-svg";
+import { deleteUsersFromServer, getUsersFromServer } from "@/redux/slices/user";
 import { useTypedDispatch, useTypedSelector } from "@/redux/typed-hooks";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import swal from "sweetalert";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  const [btnLoading, setBtnLoading] = useState(false);
   const users = useTypedSelector((state) => {
     return state.users;
   });
@@ -22,6 +25,23 @@ export default function Home() {
       setLoading(false);
     } catch (error) {
       setLoading(false);
+    }
+  }
+
+  async function DeleteUserHandler(id: string) {
+    const isOk = await swal({
+      icon: "warning",
+      title: "ایا از حذف مطمعن هستید ؟؟؟",
+      buttons: ["خیر", "بله"],
+    });
+    if (isOk) {
+      try {
+        setBtnLoading(true);
+        await dispatch(deleteUsersFromServer(id));
+        setBtnLoading(false);
+      } catch (error) {
+        setBtnLoading(false);
+      }
     }
   }
   return (
@@ -61,14 +81,15 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex md:justify-end justify-center gap-2 w-full">
-                <button className="bg-red-500 md:w-auto w-full shadow-red-500/50 dark:shadow-lg dark:shadow-red-500/20 hover:bg-red-600 hover:shadow-none hover:translate-y-1 transition shadow-lg px-4 rounded-md py-2 text-white">
-                  حذف
+                <button
+                  onClick={() => DeleteUserHandler(e._id)}
+                  disabled={btnLoading}
+                  className="bg-red-500 text-center overflow-hidden md:w-auto w-full shadow-red-500/50 dark:shadow-lg dark:shadow-red-500/20 hover:bg-red-600 hover:shadow-none hover:translate-y-1 transition shadow-lg px-4 rounded-md py-2 text-white"
+                >
+                  {btnLoading ? <LoadingSvg width={30} /> : "حذف"}
                 </button>
                 <button className="bg-blue-500 md:w-auto w-full shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-500/20 hover:bg-blue-600 hover:shadow-none hover:translate-y-1 transition shadow-lg px-4 rounded-md py-2 text-white">
                   اطلاعات
-                </button>
-                <button className="bg-zinc-500 md:w-auto w-full shadow-zinc-500/50 dark:shadow-lg dark:shadow-zinc-500/20 hover:bg-zinc-600 hover:shadow-none hover:translate-y-1 transition shadow-lg px-4 rounded-md py-2 text-white">
-                  پیام ها
                 </button>
               </div>
             </div>

@@ -21,6 +21,16 @@ export const getUsersFromServer = createAsyncThunk(
   }
 );
 
+export const deleteUsersFromServer = createAsyncThunk(
+  "users/deleteUsersFromServer",
+  async (id: string) => {
+    const res = await axios.delete(
+      `https://redux-cms.iran.liara.run/api/users/${id}`
+    );
+    return res.data;
+  }
+);
+
 const slice = createSlice({
   name: "users",
   initialState: usersState,
@@ -28,6 +38,9 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getUsersFromServer.fulfilled, (state, action) => {
       return action.payload;
+    });
+    builder.addCase(deleteUsersFromServer.fulfilled, (state, action) => {
+      return [...state].filter((e) => e._id !== action.payload.id);
     });
   },
 });
