@@ -73,12 +73,12 @@ export default function Navbar() {
         <h3>کاربران</h3>
       </Link>
       <Link
-        id="/details"
-        href={"/details"}
-        className="navbar-item text-zinc-700 dark:text-zinc-500 dark:hover:text-white hover:text-black transition flex items-center justify-center gap-3 py-3 md:px-8 px-3 cursor-pointer bg-white/0 z-[1]"
+        id="/add-user"
+        href={"/add-user"}
+        className="navbar-item text-nowrap text-zinc-700 dark:text-zinc-500 dark:hover:text-white hover:text-black transition flex items-center justify-center gap-3 py-3 md:px-8 px-3 cursor-pointer bg-white/0 z-[1]"
       >
         <TbListDetails />
-        <h3>اطلاعات</h3>
+        <h3>کاربر جدید</h3>
       </Link>
       <Link
         href={"/courses"}
