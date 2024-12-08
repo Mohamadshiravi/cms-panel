@@ -7,6 +7,7 @@ import { useTypedDispatch } from "@/redux/typed-hooks";
 import { useFormik } from "formik";
 import { useState } from "react";
 import * as yup from "yup";
+import swal from "sweetalert";
 
 const schema = yup.object({
   password: yup
@@ -45,8 +46,15 @@ export default function UserDetails() {
     onSubmit: async (values) => {
       setLoading(true);
       const res = await dispatch(addUserToServer(values));
-      setLoading(false);
-      formik.resetForm();
+      if (res) {
+        setLoading(false);
+        formik.resetForm();
+        swal({
+          icon: "success",
+          title: "کاربر اضافه شد",
+          buttons: ["اوکی", "بستن"],
+        });
+      }
     },
   });
 

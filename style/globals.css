@@ -70,3 +70,6 @@
   display: none;
   opacity: 0;
 }
+.swal-button--confirm {
+  background-color: #2563eb;
+}
