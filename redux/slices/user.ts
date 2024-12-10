@@ -16,17 +16,16 @@ const usersState: userStateType[] = [];
 export const getUsersFromServer = createAsyncThunk(
   "users/getUsersFromServer",
   async () => {
-    const res = await axios.get("https://redux-cms.iran.liara.run/api/users");
-    return res.data;
+    const res = await axios.get("/api/users");
+
+    return res.data.users;
   }
 );
 
 export const deleteUsersFromServer = createAsyncThunk(
   "users/deleteUsersFromServer",
   async (id: string) => {
-    const res = await axios.delete(
-      `https://redux-cms.iran.liara.run/api/users/${id}`
-    );
+    const res = await axios.delete(`/api/users/${id}`);
     return res.data;
   }
 );
@@ -37,9 +36,11 @@ export const addUserToServer = createAsyncThunk(
     firstname: string;
     lastname: string;
     username: string;
+    password: string;
     email: string;
+    age: number;
   }) => {
-    const res = await axios.post(`https://redux-cms.iran.liara.run/api/users`);
+    const res = await axios.post(`/api/users`, user);
     return res.data;
   }
 );

@@ -5,7 +5,7 @@ import BannerInput from "@/components/template/banner-input";
 import { addUserToServer } from "@/redux/slices/user";
 import { useTypedDispatch } from "@/redux/typed-hooks";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import * as yup from "yup";
 import swal from "sweetalert";
 
@@ -14,6 +14,11 @@ const schema = yup.object({
     .string()
     .required("رمز را وارد کنید")
     .min(8, "رمز باید حدئقل 8 حرف باشد"),
+  age: yup
+    .number()
+    .required("سن را وارد کنید")
+    .min(10, "سن واقعی وارد کنید")
+    .max(90, "سن واقعی وارد کنید"),
   email: yup
     .string()
     .required("ایمیل را وارد کنید")
@@ -40,13 +45,16 @@ export default function UserDetails() {
       lastname: "",
       username: "",
       email: "",
+      age: 0,
       password: "",
     },
     validationSchema: schema,
     onSubmit: async (values) => {
       setLoading(true);
       const res = await dispatch(addUserToServer(values));
-      if (res) {
+      console.log(res);
+
+      if (res.payload) {
         setLoading(false);
         formik.resetForm();
         swal({
@@ -54,15 +62,35 @@ export default function UserDetails() {
           title: "کاربر اضافه شد",
           buttons: ["اوکی", "بستن"],
         });
+      } else {
+        setLoading(false);
+        swal({
+          icon: "error",
+          title: "کاربر اضافه نشد",
+          buttons: ["اوکی", "بستن"],
+        });
       }
     },
   });
+
+  function BeforeSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (Object.keys(formik.errors).length > 0) {
+      swal({
+        icon: "error",
+        title: "لطفاً تمام خطاهای فرم را برطرف کنید.",
+        buttons: ["اوکی", "بستن"],
+      });
+    } else {
+      formik.handleSubmit();
+    }
+  }
 
   const dispatch = useTypedDispatch();
 
   return (
     <section className="sm:p-6 p-3 bg-white dark:bg-zinc-900 min-h-full">
-      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-6">
+      <form onSubmit={BeforeSubmit} className="flex flex-col gap-6">
         <BannerInput />
         <div className="grid grid-cols-[1fr] md:grid-cols-[6fr_6fr] gap-6">
           <input
@@ -125,6 +153,20 @@ export default function UserDetails() {
           />
         </div>
         <div className="grid grid-cols-[1fr] md:grid-cols-[6fr_6fr] gap-6 md:mt-0 mt-8">
+          <input
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.age}
+            name="age"
+            placeholder="سن"
+            type="number"
+            className={`form-input ${
+              formik.touched.age && formik.errors.age
+                ? "border-b-red-600 dark:border-b-red-800"
+                : formik.touched.email &&
+                  "border-b-green-600 dark:border-b-green-800"
+            } block w-full border-2 border-zinc-200 dark:border-zinc-800 bg-inherit rounded-sm border-b-4 px-3 py-2 text-lg outline-none`}
+          />
           <input
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
