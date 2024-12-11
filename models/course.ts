@@ -1,16 +1,15 @@
-import mongoose, { Types } from "mongoose";
-import categoriModel from "./categori";
+import mongoose, { Schema, model, Document, Types } from "mongoose";
 
-interface Course {
+interface Course extends Document {
   title: string;
   price: number;
-  categori: Types.ObjectId;
+  categori: string;
   registersCount: number;
-  discount?: number;
+  discount: number;
   desc: string;
 }
 
-const courseSchema = new mongoose.Schema<Course>({
+const courseSchema = new Schema<Course>({
   title: {
     type: String,
     required: true,
@@ -20,8 +19,7 @@ const courseSchema = new mongoose.Schema<Course>({
     required: true,
   },
   categori: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Categori",
+    type: String,
     required: true,
   },
   registersCount: {
@@ -30,6 +28,7 @@ const courseSchema = new mongoose.Schema<Course>({
   },
   discount: {
     type: Number,
+    default: 0,
   },
   desc: {
     type: String,
@@ -38,5 +37,5 @@ const courseSchema = new mongoose.Schema<Course>({
 });
 
 const courseModel =
-  mongoose.models.Course || mongoose.model<Course>("Course", courseSchema);
+  mongoose.models.Course || model<Course>("Course", courseSchema);
 export default courseModel;

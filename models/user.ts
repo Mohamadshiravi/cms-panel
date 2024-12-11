@@ -9,7 +9,7 @@ interface User {
   age: number;
 }
 
-const userSchema = new mongoose.Schema<User>({
+const Schema = new mongoose.Schema<User>({
   firstname: {
     type: String,
     required: true,
@@ -36,6 +36,5 @@ const userSchema = new mongoose.Schema<User>({
   },
 });
 
-const userModel =
-  mongoose.models.User || mongoose.model<User>("User", userSchema);
+const userModel = mongoose.models.User || mongoose.model<User>("User", Schema);
 export default userModel;

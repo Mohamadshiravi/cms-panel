@@ -81,14 +81,6 @@ export default function Courses() {
           >
             افزودن تخفیف
           </button>
-          <button
-            onClick={() => {
-              setCourseModal("categori");
-            }}
-            className="bg-blue-600 hover:bg-blue-700 shadow-lg dark:shadow-lg dark:shadow-blue-500/20 shadow-blue-500/50 transition w-full py-2 rounded-md text-xl text-white"
-          >
-            افزودن دسته بندی
-          </button>
         </div>
         <div className="flex flex-col gap-4 mt-8">
           {!loading &&
@@ -137,7 +129,7 @@ export default function Courses() {
                       </div>
                       <div className="flex items-center gap-2 border-l border-zinc-300 dark:border-zinc-700 px-3">
                         <AiOutlinePaperClip className="text-xl text-yellow-500" />
-                        <span dir="ltr">{e.categori.name}</span>
+                        <span dir="ltr">{e.categori}</span>
                       </div>
                       <div className="flex items-center gap-2 border-l border-zinc-300 dark:border-zinc-700 px-3">
                         <PiStudentBold className="text-xl text-blue-500" />

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-type userStateType = {
+export type userStateType = {
   _id: string;
   age: number;
   city: string;

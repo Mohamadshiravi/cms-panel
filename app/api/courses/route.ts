@@ -1,5 +1,5 @@
 import ConnectTODb from "@/DB/connect-to-DB";
-import courseModel from "@/models/courses";
+import courseModel from "@/models/course";
 
 export async function POST(req: Request) {
   try {
@@ -25,8 +25,6 @@ export async function POST(req: Request) {
       );
     }
   } catch (error) {
-    console.log(error);
-
     return Response.json({ message: "server error" }, { status: 500 });
   }
 }
@@ -34,12 +32,15 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     ConnectTODb();
-    const res = await courseModel.find().populate("categori", "-__v -_id");
+    const res = await courseModel.find({}, "-__v");
+    console.log(res);
 
     if (res) {
       return Response.json({ courses: res }, { status: 200 });
     }
   } catch (error) {
+    console.log(error);
+
     return Response.json({ message: "server error" }, { status: 500 });
   }
 }

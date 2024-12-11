@@ -23,10 +23,10 @@ export default function RootLayout({
       >
         <ReduxProvider>
           <Header />
-          <main className="grid xl:grid-cols-[3.5fr_8.5fr] xl:mt-10 sm:mt-6 mt-3 xl:gap-10 sm:gap-6 gap-3">
-            <article>
+          <main className=" xl:mt-10 sm:mt-6 mt-3 xl:gap-10 sm:gap-6 gap-3">
+            {/* <article>
               <UserDetails />
-            </article>
+            </article> */}
             <section className="w-full rounded-lg overflow-hidden">
               <Navbar />
               {children}

@@ -5,7 +5,7 @@ type courseStateType = {
   _id: string;
   title: string;
   price: number;
-  categori: { _id: string; name: string };
+  categori: string;
   registersCount: number;
   discount: number;
   desc: string;

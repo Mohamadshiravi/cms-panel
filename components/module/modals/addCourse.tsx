@@ -18,6 +18,14 @@ export default function AddCourseModal({
   const [PriceInp, setPriceInp] = useState("");
   const [courseCategotiInp, setCourseCategoriInp] = useState("");
 
+  const [categories, setCategories] = useState([
+    "فرانت اند",
+    "بک اند",
+    "امنیت",
+    "فرعی",
+    "مهارت های نرم",
+  ]);
+
   const [loading, setLoading] = useState(false);
 
   async function AddCourseHandler(e: FormEvent) {
@@ -61,14 +69,13 @@ export default function AddCourseModal({
   }
 
   const dispatch = useTypedDispatch();
-  const categories = useTypedSelector((state) => {
-    return state.categories;
-  });
 
   return (
     <form
       className={`${
-        isModalOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+        isModalOpen
+          ? "translate-y-0 opacity-100"
+          : "-translate-y-[10rem] opacity-0"
       } fade-animate md:px-28 fixed top-1 transition duration-300 left-[1%] w-[98%] bg-white dark:bg-zinc-900 p-4 rounded-lg shadow-lg flex flex-col gap-3 z-50`}
     >
       <h3 className="text-center text-2xl mb-8">افزودن دوره جدید</h3>
@@ -102,8 +109,8 @@ export default function AddCourseModal({
           دسته بندی دوره
         </option>
         {categories.map((e, i) => (
-          <option key={i} value={e._id}>
-            {e.name}
+          <option key={i} value={e}>
+            {e}
           </option>
         ))}
       </select>

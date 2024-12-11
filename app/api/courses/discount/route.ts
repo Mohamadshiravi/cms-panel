@@ -1,5 +1,5 @@
 import ConnectTODb from "@/DB/connect-to-DB";
-import courseModel from "@/models/courses";
+import courseModel from "@/models/course";
 
 export async function PUT(req: Request) {
   const { precent } = await req.json();
@@ -10,9 +10,7 @@ export async function PUT(req: Request) {
       { $set: { discount: precent } }
     );
 
-    const courses = await courseModel
-      .find({}, "-__v")
-      .populate("categori", "-__v");
+    const courses = await courseModel.find({}, "-__v");
 
     if (res) {
       return Response.json(
@@ -21,6 +19,8 @@ export async function PUT(req: Request) {
       );
     }
   } catch (error) {
+    console.log(error);
+
     return Response.json({ message: "server error" }, { status: 500 });
   }
 }

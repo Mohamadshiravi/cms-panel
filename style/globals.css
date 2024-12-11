@@ -91,7 +91,7 @@
 @keyframes fading {
   from {
     opacity: 0;
-    transform: translateY(-1rem);
+    transform: translateY(-10rem);
   }
   to {
     opacity: 1;

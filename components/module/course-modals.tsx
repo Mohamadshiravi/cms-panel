@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTypedDispatch, useTypedSelector } from "@/redux/typed-hooks";
-import { getCategoriFromServer } from "@/redux/slices/categori";
 import AddCourseModal from "./modals/addCourse";
 import AddDiscountModal from "./modals/addDiscount";
-import AddCategoriModal from "./modals/addCategori";
 
 export default function CourseModals({
   modal,
@@ -23,13 +20,6 @@ export default function CourseModals({
     }, 300);
   }
 
-  const dispatch = useTypedDispatch();
-
-  useEffect(() => {
-    if (modal === "course") {
-      dispatch(getCategoriFromServer());
-    }
-  }, []);
   return (
     <>
       <section
@@ -47,12 +37,6 @@ export default function CourseModals({
       )}
       {modal === "discount" && (
         <AddDiscountModal
-          isModalOpen={isModalOpen}
-          CloseModalHandler={CloseModalHandler}
-        />
-      )}
-      {modal === "categori" && (
-        <AddCategoriModal
           isModalOpen={isModalOpen}
           CloseModalHandler={CloseModalHandler}
         />

@@ -44,7 +44,9 @@ export default function AddDiscountModal({
     <form
       onSubmit={AddDiscountHandler}
       className={`${
-        isModalOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+        isModalOpen
+          ? "translate-y-0 opacity-100"
+          : "-translate-y-[10rem] opacity-0"
       } fade-animate md:px-28 fixed top-1 transition duration-300 left-[1%] w-[98%] bg-white dark:bg-zinc-900 p-4 rounded-lg shadow-lg flex flex-col gap-3 z-50`}
     >
       <h3 className="text-center text-2xl mb-8">افزودن تخفیف جدید</h3>

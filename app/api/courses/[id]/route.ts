@@ -1,5 +1,5 @@
 import ConnectTODb from "@/DB/connect-to-DB";
-import courseModel from "@/models/courses";
+import courseModel from "@/models/course";
 
 export async function DELETE(
   req: Request,

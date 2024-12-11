@@ -54,14 +54,6 @@ export default function UserDetails() {
             <span className="text-red-500">30</span>
           </li>
         </ul>
-        <div className="xl:px-8 px-4 w-full xl:mt-8 md:mt-0 mt-8">
-          <Link
-            href={"/details"}
-            className="bg-blue-600 block text-center hover:bg-blue-700 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-500/20 transition w-full py-2 rounded-md text-xl text-white"
-          >
-            تغییر اطلاعات
-          </Link>
-        </div>
       </div>
     </section>
   );

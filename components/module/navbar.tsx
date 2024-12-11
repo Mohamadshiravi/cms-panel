@@ -62,7 +62,7 @@ export default function Navbar() {
   return (
     <nav
       id="navbar"
-      className="bg-white dark:bg-zinc-900 w-full flex items-center border-b-2 dark:border-zinc-800 relative select-none px-1 sm:overflow-x-visible overflow-x-scroll"
+      className="bg-white dark:bg-zinc-900 w-full flex items-center border-b-2 dark:border-zinc-800 relative select-none px-1 overflow-x-auto oveflow-y-hidden"
     >
       <Link
         id="/"
@@ -98,7 +98,7 @@ export default function Navbar() {
       </Link>
       <div
         style={{ width: `${elementWidth}px`, right: `${gapToRight}px` }}
-        className={`bg-blue-500 h-[2px] rounded-t-lg absolute sm:bottom-[-2px] bottom-[-1px] transition-all duration-300`}
+        className={`bg-blue-500 h-[2px] rounded-t-lg absolute bottom-0 transition-all duration-300`}
       ></div>
       <div
         style={{
