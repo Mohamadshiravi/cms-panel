@@ -5,7 +5,7 @@ type courseStateType = {
   _id: string;
   title: string;
   price: number;
-  categori: string;
+  category: string;
   registersCount: number;
   discount: number;
   desc: string;
@@ -27,7 +27,7 @@ export const addCoursesToServer = createAsyncThunk(
     title: string;
     desc: string;
     price: number;
-    categori: string;
+    category: string;
   }) => {
     const res = await axios.post("/api/courses", course);
     return res.data.course;

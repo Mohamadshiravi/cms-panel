@@ -34,8 +34,8 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="flex sm:flex-row flex-col justify-between items-center gap-4 w-full rounded-lg p-4 bg-white dark:bg-zinc-900 shadow-xl">
-      <div className="sm:flex hidden w-full items-center">
+    <header className="flex justify-between items-center gap-4 w-full rounded-lg p-4 bg-white dark:bg-zinc-900 shadow-xl">
+      <div className="flex w-full items-center">
         <Image
           src={"/img/me.jpg"}
           width={800}
@@ -44,11 +44,11 @@ export default function Header() {
           className="w-[60px] h-[60px] object-cover rounded-lg"
         />
         <div className="flex flex-col justify-center mr-4">
-          <h2 className="moraba-bold text-2xl">محمد شیروی</h2>
-          <h3 className="text-zinc-600">توسعه دهنده وب</h3>
+          <h2 className="moraba-bold sm:text-2xl text-xl">محمد شیروی</h2>
+          <h3 className="text-zinc-600 sm:text-base text-sm">توسعه دهنده وب</h3>
         </div>
       </div>
-      <div className="flex sm:justify-end justify-between w-full items-center gap-4">
+      <div className="flex justify-end items-center gap-4">
         <button
           onClick={ToggleTheme}
           className={`${
@@ -62,10 +62,6 @@ export default function Header() {
           ) : (
             <GoMoon className="text-3xl" />
           )}
-        </button>
-
-        <button className="bg-red-500 h-[50px] dark:shadow-lg dark:shadow-red-500/30 px-4 rounded-lg text-white hover:bg-red-600 transition shadow-lg shadow-red-500/60 flex items-center gap-4 justify-center text-xl">
-          <IoExitOutline className="text-2xl" /> خروج از پنل
         </button>
       </div>
     </header>

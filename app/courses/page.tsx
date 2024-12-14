@@ -129,7 +129,7 @@ export default function Courses() {
                       </div>
                       <div className="flex items-center gap-2 border-l border-zinc-300 dark:border-zinc-700 px-3">
                         <AiOutlinePaperClip className="text-xl text-yellow-500" />
-                        <span dir="ltr">{e.categori}</span>
+                        <span dir="ltr">{e.category}</span>
                       </div>
                       <div className="flex items-center gap-2 border-l border-zinc-300 dark:border-zinc-700 px-3">
                         <PiStudentBold className="text-xl text-blue-500" />

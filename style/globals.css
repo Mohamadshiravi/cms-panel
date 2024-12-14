@@ -98,3 +98,7 @@
     transform: none;
   }
 }
+.ql-editor {
+  direction: rtl;
+  text-align: right;
+}

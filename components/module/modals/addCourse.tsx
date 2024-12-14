@@ -16,9 +16,9 @@ export default function AddCourseModal({
   const [titleInp, setTitleInp] = useState("");
   const [descInp, setDescInp] = useState("");
   const [PriceInp, setPriceInp] = useState("");
-  const [courseCategotiInp, setCourseCategoriInp] = useState("");
+  const [courseCategotiInp, setCoursecategoryInp] = useState("");
 
-  const [categories, setCategories] = useState([
+  const [categoryes, setcategoryes] = useState([
     "فرانت اند",
     "بک اند",
     "امنیت",
@@ -45,7 +45,7 @@ export default function AddCourseModal({
       title: titleInp,
       desc: descInp,
       price: +PriceInp,
-      categori: courseCategotiInp,
+      category: courseCategotiInp,
     };
 
     const res = await dispatch(addCoursesToServer(course));
@@ -101,14 +101,14 @@ export default function AddCourseModal({
         className={`block w-full border-2 border-zinc-200 dark:border-zinc-800 bg-inherit rounded-sm border-b-4 px-3 py-2 text-lg outline-none`}
       />
       <select
-        onChange={(e) => setCourseCategoriInp(e.target.value)}
+        onChange={(e) => setCoursecategoryInp(e.target.value)}
         value={courseCategotiInp}
         className="dark:bg-zinc-800 rounded-sm py-3 px-2 outline-none"
       >
         <option value={""} defaultChecked disabled>
           دسته بندی دوره
         </option>
-        {categories.map((e, i) => (
+        {categoryes.map((e, i) => (
           <option key={i} value={e}>
             {e}
           </option>

@@ -3,7 +3,7 @@ import mongoose, { Schema, model, Document, Types } from "mongoose";
 interface Course extends Document {
   title: string;
   price: number;
-  categori: string;
+  category: string;
   registersCount: number;
   discount: number;
   desc: string;
@@ -18,7 +18,7 @@ const courseSchema = new Schema<Course>({
     type: Number,
     required: true,
   },
-  categori: {
+  category: {
     type: String,
     required: true,
   },

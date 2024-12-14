@@ -1,26 +1,28 @@
 import ConnectTODb from "@/DB/connect-to-DB";
-import courseModel from "@/models/course";
+import veblogModel from "@/models/veblog";
 
 export async function POST(req: Request) {
   try {
-    const { title, price, category, desc } = await req.json();
+    const { title, body, category } = await req.json();
 
     ConnectTODb();
-    const res = await courseModel.create({
+    const res = await veblogModel.create({
       title,
-      price,
       category,
+      body,
       desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکهع ",
-      registersCount: Math.floor(Math.random() * 10),
+      views: Math.floor(Math.random() * 100),
     });
 
     if (res) {
       return Response.json(
-        { message: "course created", course: res },
+        { message: "veblog created", veblog: res },
         { status: 201 }
       );
     }
   } catch (error) {
+    console.log(error);
+
     return Response.json({ message: "server error" }, { status: 500 });
   }
 }
@@ -28,15 +30,12 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     ConnectTODb();
-    const res = await courseModel.find({}, "-__v");
-    console.log(res);
+    const res = await veblogModel.find({}, "-__v");
 
     if (res) {
-      return Response.json({ courses: res }, { status: 200 });
+      return Response.json({ veblogs: res }, { status: 200 });
     }
   } catch (error) {
-    console.log(error);
-
     return Response.json({ message: "server error" }, { status: 500 });
   }
 }
